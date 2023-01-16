@@ -1,0 +1,51 @@
+.signup {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+form {
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+}
+
+.input {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.input label {
+  font-size: 14px;
+}
+
+.input input {
+  height: 30px;
+  width: 300px;
+  padding: 5px 10px;
+}
+
+button {
+  background-color: #00337c;
+  padding: 10px 15px;
+  margin-top: 15px;
+  cursor: pointer;
+  border: none;
+  color: white;
+  width: 100%;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #2f6fc7;
+}
+
+.error {
+  color: red;
+  font-size: 12px;
+  width: 300px;
+}
