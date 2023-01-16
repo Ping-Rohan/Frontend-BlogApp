@@ -1,5 +1,6 @@
 import "./App.css";
 import Signup from "./pages/signup/signup";
+import Login from "./pages/login/Login";
 import { Route, Routes } from "react-router-dom";
 import { Circles } from "react-loader-spinner";
 import { useSelector } from "react-redux";
@@ -34,6 +35,7 @@ function App() {
         <>
           <Routes>
             <Route path="/signup" element={<Signup />} />
+            <Route path="/login" element={<Login />} />
           </Routes>
         </>
       )}
