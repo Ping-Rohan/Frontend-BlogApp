@@ -44,4 +44,24 @@ const signUp = (form) => {
   };
 };
 
-export { setAccessToken, setLogin, setDocument, signUp };
+const login = (form, navigate) => {
+  return async (dispatch) => {
+    try {
+      dispatch(setShowSpinner(true));
+      const response = await axios.post(
+        `https://backend-blog-omega.vercel.app/api/v1/users/login`,
+        form
+      );
+      dispatch(setShowSpinner(false));
+      dispatch(setAccessToken(response.data.accessToken));
+      toast.success(response.data.message);
+      navigate("/");
+      console.log(response);
+    } catch (error) {
+      toast.error(error.response.data.message);
+      dispatch(setShowSpinner(false));
+    }
+  };
+};
+
+export { setAccessToken, setLogin, setDocument, signUp, login };
