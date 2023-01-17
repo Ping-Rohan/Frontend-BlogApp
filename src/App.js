@@ -6,6 +6,7 @@ import { Circles } from "react-loader-spinner";
 import { useSelector } from "react-redux";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Homepage from "./pages/HomePage/Homepage";
 
 function App() {
   const showSpinner = useSelector((state) => state.ui.showSpinner);
@@ -34,6 +35,7 @@ function App() {
       {!showSpinner && (
         <>
           <Routes>
+            <Route path="/" element={<Homepage />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/login" element={<Login />} />
           </Routes>
