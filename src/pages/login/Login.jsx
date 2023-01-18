@@ -2,21 +2,21 @@ import React from "react";
 import "./Login.css";
 import { useFormik } from "formik";
 import loginSchema from "./LoginSchema";
-import { login } from "../../Redux/User";
+import { loginUser } from "../../Redux/user";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const { errors, handleChange, handleSubmit } = useFormik({
     initialValues: {
       email: "",
       password: "",
     },
     onSubmit: (value, action) => {
-      console.log(value);
-      dispatch(login(value, navigate));
+      dispatch(loginUser(value, navigate));
     },
     validationSchema: loginSchema,
   });

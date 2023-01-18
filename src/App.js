@@ -1,48 +1,36 @@
-import "./App.css";
-import Signup from "./pages/signup/signup";
 import Login from "./pages/login/Login";
-import { Route, Routes } from "react-router-dom";
-import { Circles } from "react-loader-spinner";
-import { useSelector } from "react-redux";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import Homepage from "./pages/HomePage/Homepage";
+import Signup from "./pages/signup/signup";
+import Homepage from "./pages/Homepage/Homepage";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { GridLoader } from "react-spinners";
+import { useDispatch, useSelector } from "react-redux";
+import { Toaster } from "react-hot-toast";
 
-function App() {
+export default function App() {
   const showSpinner = useSelector((state) => state.ui.showSpinner);
+
   return (
-    <div className="App">
-      <ToastContainer
-        position="bottom-right"
-        autoClose={1000}
-        hideProgressBar={true}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnHover
+    <BrowserRouter>
+      <Toaster containerStyle={{ fontSize: "16px" }} position="bottom-center" />
+
+      <GridLoader
+        color="#84D2C5"
+        loading={showSpinner}
+        className="spinner"
+        cssOverride={{
+          position: "absolute",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50% , -50%)",
+        }}
       />
-      {showSpinner && (
-        <Circles
-          height="80"
-          width="80"
-          color="#4fa94d"
-          ariaLabel="circles-loading"
-          wrapperStyle={{}}
-          wrapperClass="spinner"
-          visible={true}
-        />
-      )}
       {!showSpinner && (
-        <>
-          <Routes>
-            <Route path="/" element={<Homepage />} />
-            <Route path="/signup" element={<Signup />} />
-            <Route path="/login" element={<Login />} />
-          </Routes>
-        </>
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/" element={<Homepage />} />
+        </Routes>
       )}
-    </div>
+    </BrowserRouter>
   );
 }
-
-export default App;

@@ -2,8 +2,6 @@ import React from "react";
 import "./signup.css";
 import { useFormik } from "formik";
 import signupSchema from "./signupSchema";
-import { useDispatch } from "react-redux";
-import { signUp } from "../../Redux/User";
 
 let initialValues = {
   name: "",
@@ -13,12 +11,10 @@ let initialValues = {
 };
 
 export default function Signup() {
-  const dispatch = useDispatch();
   const { handleSubmit, handleChange, errors, values } = useFormik({
     initialValues,
     onSubmit: (value, action) => {
       console.log(value);
-      dispatch(signUp(value));
     },
     validationSchema: signupSchema,
   });
