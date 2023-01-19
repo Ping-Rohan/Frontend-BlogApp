@@ -38,7 +38,7 @@
 .fetched-blog {
   width: 70%;
   background-color: #fff;
-  height: 700px;
   border-radius: 10px;
   padding: 20px;
+  height: min-content;
 }

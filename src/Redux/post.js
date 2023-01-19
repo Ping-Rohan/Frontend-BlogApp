@@ -1,4 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { toast } from "react-hot-toast";
+import { privateInstance } from "../axios/axios";
 
 const postSlice = createSlice({
   name: "Post",
@@ -9,7 +11,7 @@ const postSlice = createSlice({
     replacePost(state, action) {
       state.post = action.payload;
     },
-    updatePost(state, action) {
+    pushPost(state, action) {
       state.post.push(action.payload);
     },
   },
@@ -17,6 +19,21 @@ const postSlice = createSlice({
 
 export default postSlice.reducer;
 
-const { replacePost, updatePost } = postSlice.actions;
+const { replacePost, pushPost } = postSlice.actions;
 
-export { replacePost, updatePost };
+const getPost = () => {
+  return async (dispatch) => {
+    const response = await privateInstance.get("/api/v1/post");
+    dispatch(replacePost(response.data.post));
+  };
+};
+
+const createPost = (form) => {
+  return async (dispatch) => {
+    const response = await privateInstance.post("/api/v1/post", form);
+    toast.success("Post created successfully");
+    console.log(response);
+    dispatch(pushPost(response.data.post));
+  };
+};
+export { getPost, createPost };

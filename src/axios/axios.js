@@ -11,7 +11,6 @@ const privateInstance = axios.create({
 
 privateInstance.interceptors.request.use((request) => {
   let accessToken = store.getState().user.accessToken;
-  console.log(accessToken);
   request.headers.authorization = `Bearer ${accessToken}`;
   return request;
 });
