@@ -1,0 +1,100 @@
+.profile {
+  padding-block: 30px;
+  background-color: #ccc;
+  height: calc(100vh - 60px);
+}
+
+.profile .container {
+  border: 1px solid #ccc;
+  padding-bottom: 40px;
+  background-color: #fff;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.cover {
+  height: 250px;
+  background: linear-gradient(#457fca, #5691c8);
+
+  position: relative;
+}
+
+.profileImage {
+  height: 120px;
+  width: 120px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: block;
+  position: absolute;
+  top: 75%;
+  left: 20px;
+  border: 5px solid #fff;
+}
+
+.profile_info {
+  margin-top: 50px;
+  padding-inline-start: 20px;
+}
+
+.profileName {
+  padding-block-start: 20px;
+  font-size: 2.4rem;
+  font-weight: 500;
+  font-family: sans-serif;
+}
+
+.following-followers {
+  display: flex;
+  width: 250px;
+  gap: 20px;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.following {
+  background-color: #ccc;
+  padding: 5px 10px;
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+
+.followers {
+  background-color: #457fca;
+  padding: 5px 10px;
+  font-size: 1.4rem;
+  color: white;
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.upload {
+  position: absolute;
+  z-index: 999;
+  right: 20px;
+  bottom: 10px;
+  height: 30px;
+  width: 30px;
+  overflow: hidden;
+}
+
+.upload input {
+  opacity: 0;
+  position: absolute;
+  z-index: 999;
+  top: 0;
+  transform: scale(2);
+  cursor: pointer;
+}
+
+.camera {
+  font-size: 2.5rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+}

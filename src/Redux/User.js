@@ -36,6 +36,7 @@ const loginUser = (form, navigate) => {
       dispatch(setSpinner(true));
       const response = await axios.post("/api/v1/users/login", form);
       toast.success(response.data.message);
+      dispatch(updateAccessToken(response.data.accessToken));
       dispatch(updateDocument(response.data.document));
       dispatch(setSpinner(false));
       dispatch(updateLogin(true));
@@ -47,4 +48,15 @@ const loginUser = (form, navigate) => {
   };
 };
 
-export { loginUser };
+const updateFields = (form) => {
+  return async (dispatch) => {
+    try {
+      await privateInstance.patch("/api/v1/users/update", form);
+      toast.success("Updated successfully");
+    } catch (error) {
+      toast.error(error.response.data.message);
+    }
+  };
+};
+
+export { loginUser, updateFields };

@@ -3,10 +3,10 @@ import "./Header.css";
 import { BiSearch } from "react-icons/bi";
 import { CiDark } from "react-icons/ci";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 export default function Header() {
   const profileImage = useSelector((state) => state.user.document.profileImage);
-  console.log(profileImage);
   return (
     <header>
       <div className="container">
@@ -21,7 +21,9 @@ export default function Header() {
         </div>
         <div className="header_center">
           <ul className="nav__items">
-            <li>Home</li>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
             <li>Products</li>
             <li>Blogs</li>
             <li>About us</li>
@@ -36,7 +38,9 @@ export default function Header() {
             <CiDark />
           </div>
           <div className="avatar">
-            <img src={profileImage} alt="" />
+            <Link to="/profile">
+              <img src={profileImage} alt="" />
+            </Link>
           </div>
         </div>
       </div>

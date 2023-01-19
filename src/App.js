@@ -3,8 +3,10 @@ import Signup from "./pages/signup/signup";
 import Homepage from "./pages/Homepage/Homepage";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { GridLoader } from "react-spinners";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Toaster } from "react-hot-toast";
+import Profile from "./pages/Profile/profile.jsx";
+import ProtectedRoute from "./pages/ProtectedRoute";
 
 export default function App() {
   const showSpinner = useSelector((state) => state.ui.showSpinner);
@@ -26,9 +28,13 @@ export default function App() {
       />
       {!showSpinner && (
         <Routes>
+          <Route element={<ProtectedRoute />}>
+            <Route path="/" element={<Homepage />} />
+            <Route path="/profile" element={<Profile />} />
+          </Route>
+
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path="/" element={<Homepage />} />
         </Routes>
       )}
     </BrowserRouter>
