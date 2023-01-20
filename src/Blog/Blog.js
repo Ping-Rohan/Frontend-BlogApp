@@ -4,14 +4,20 @@ import { useSelector, useDispatch } from "react-redux";
 import { getPost } from "../Redux/post";
 import "./Blog.css";
 import { AiFillLike, AiFillEye } from "react-icons/ai";
+import { useNavigate } from "react-router-dom";
 
 export default function Blog() {
   const post = useSelector((state) => state.post.post);
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getPost());
   }, []);
+
+  function handleBlogClick(id) {
+    navigate(`/blog/${id}`);
+  }
 
   return (
     <section className="main-blog">
@@ -24,7 +30,11 @@ export default function Blog() {
       )}
       {post.map((el) => {
         return (
-          <div className="blog-item" key={el._id}>
+          <div
+            className="blog-item"
+            key={el._id}
+            onClick={handleBlogClick.bind(null, el._id)}
+          >
             <div className="blog-image">
               <img src={el.photos[0]} alt="" />
             </div>

@@ -1,0 +1,22 @@
+.singlePost-heading {
+  font-size: 4rem;
+  font-weight: 400;
+}
+
+.post-topbar span {
+  font-size: 1.5rem;
+  text-transform: capitalize;
+}
+
+.post-topbar {
+  padding-block: 20px;
+}
+
+.singlePost-img {
+  height: 400px;
+}
+
+.singlePost-description {
+  padding-block: 30px;
+  font-size: 1.8rem;
+}
