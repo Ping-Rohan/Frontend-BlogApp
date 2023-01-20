@@ -3,8 +3,13 @@ import Blog from "../../Blog/Blog";
 import { createPost } from "../../Redux/post";
 import { useFormik } from "formik";
 import { useDispatch } from "react-redux";
+import { useState } from "react";
 
 export default function Homepage() {
+  const [postImages, setPostImages] = useState([]);
+
+  console.log(postImages);
+
   const dispatch = useDispatch();
   const { handleChange, handleSubmit, values } = useFormik({
     initialValues: {
@@ -12,12 +17,19 @@ export default function Homepage() {
       description: "",
     },
 
-    onSubmit: (value) => {
-      console.log(value);
+    onSubmit: (value, action) => {
+      let form = new FormData();
+      form.append("image", postImages);
+      form.append("document", JSON.stringify(value));
 
-      dispatch(createPost(value));
+      dispatch(createPost(form));
+      action.resetForm();
     },
   });
+
+  function handleImageChange(e) {
+    setPostImages(e.target.files[0]);
+  }
   return (
     <>
       <section className="homepage">
@@ -42,6 +54,7 @@ export default function Homepage() {
                 value={values.description}
               ></textarea>
             </div>
+            <input type="file" name="" id="" onChange={handleImageChange} />
             <button className="btn-primary" type="submit">
               Post
             </button>
