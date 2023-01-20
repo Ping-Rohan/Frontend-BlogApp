@@ -3,6 +3,10 @@
   font-weight: 400;
 }
 
+.single-blog {
+  padding-bottom: 30px;
+}
+
 .post-topbar span {
   font-size: 1.5rem;
   text-transform: capitalize;
@@ -19,4 +23,86 @@
 .singlePost-description {
   padding-block: 30px;
   font-size: 1.8rem;
+}
+
+.like-blog span {
+  font-size: 2rem;
+  height: 20px;
+}
+
+.like-us {
+  display: flex;
+  gap: 3px;
+  align-items: center;
+  cursor: pointer;
+}
+
+.comments h2 {
+  font-size: 1.8rem;
+}
+
+.no-comment {
+  font-size: 1.4rem;
+  border: 1px solid #ccc;
+  padding: 8px;
+  display: inline-block;
+  margin-top: 20px;
+  border-radius: 10px;
+}
+
+textarea {
+  resize: none;
+}
+
+.post-comment {
+  width: min-content;
+  margin-top: 20px;
+}
+
+.default {
+  color: #ccc;
+}
+
+.green {
+  color: blue;
+}
+
+.like-blog {
+  display: flex;
+  gap: 30px;
+}
+
+.comment-wrapper {
+  padding-block: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.comment-box {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.comment-box h2 {
+  font-size: 1.8rem;
+  font-weight: 500;
+}
+
+.comment-box p {
+  font-size: 1.6rem;
+  font-weight: 300;
+}
+
+.comment-image {
+  height: 70px;
+  width: 70px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid green;
+}
+
+.comment-box img {
 }

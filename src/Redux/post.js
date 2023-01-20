@@ -1,7 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { toast } from "react-hot-toast";
 import { privateInstance } from "../axios/axios";
-import { setSpinner } from "./ui";
 
 const postSlice = createSlice({
   name: "Post",
@@ -38,12 +37,9 @@ const createPost = (form) => {
   };
 };
 
-const getPostById = (id) => {
-  return async (dispatch) => {
-    dispatch(setSpinner(true));
-    const response = await privateInstance.get(`/api/v1/post/${id}`);
-    dispatch(setSpinner(false));
-    return response.data;
-  };
+const toggleLike = async (id) => {
+  const response = await privateInstance.post(`/api/v1/post/${id}/like`);
+  return response.data.likes;
 };
-export { getPost, createPost, getPostById };
+
+export { getPost, createPost, toggleLike };
