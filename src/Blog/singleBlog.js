@@ -1,8 +1,6 @@
 import { useParams } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { AiFillLike } from "react-icons/ai";
-import { toggleLike } from "../Redux/post";
-import { useState } from "react";
+import { useSelector } from "react-redux";
+import Parser from "html-react-parser";
 import "./singleBlog.css";
 
 export default function SingleBlog() {
@@ -24,7 +22,7 @@ export default function SingleBlog() {
           <img src={post[0].photos[0]} alt="" />
         </div>
         <div className="singlePost-description">
-          <p>{post[0].description}</p>
+          {Parser(post[0].description)}
         </div>
         <div className="comments">
           <h2>Comments</h2>

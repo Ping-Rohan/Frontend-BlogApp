@@ -3,7 +3,6 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getPost } from "../Redux/post";
 import "./Blog.css";
-import { AiFillLike, AiFillEye } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 
 export default function Blog() {
@@ -39,20 +38,16 @@ export default function Blog() {
               <img src={el.photos[0]} alt="" />
             </div>
             <div className="blog-content">
-              <h1 className="blog-heading">{el.title}</h1>
+              <div className="blog-top">
+                <h1 className="blog-heading">{el.title.substring(0, 48)}</h1>
+                <div className="blogauthor">
+                  <span>By {el.author.name}</span>
+                </div>
+              </div>
+
               <p className="blog-description">
-                {el.description.substring(0, 150).concat("....")}
+                {el.description.substring(0, 200).replace(/(<([^>]+)>)/gi, "")}
               </p>
-            </div>
-            <div className="views-likes">
-              <div className="views">
-                <AiFillEye className="eye" />
-                <span>1600</span>
-              </div>
-              <div className="likes">
-                <AiFillLike className="thumb" />
-                <span>{el.likes.length}</span>
-              </div>
             </div>
           </div>
         );

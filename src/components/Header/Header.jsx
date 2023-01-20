@@ -1,48 +1,24 @@
 import React from "react";
 import "./Header.css";
-import { BiSearch } from "react-icons/bi";
-import { CiDark } from "react-icons/ci";
-import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 export default function Header() {
-  const profileImage = useSelector((state) => state.user.document.profileImage);
   return (
     <header>
       <div className="container">
-        <div className="header_left">
-          <div className="header_logo">
-            <img
-              src="https://img.freepik.com/free-vector/spa-business-logo-vector-gold-lotus-icon-design_53876-118100.jpg?w=740&t=st=1674041043~exp=1674041643~hmac=92afef933c14332b8d9fed11f068abad7542bb05679d679d33dd39b5bf29fe2b"
-              alt=""
-            />
-          </div>
-          <span className="company_name">Rblogs</span>
-        </div>
-        <div className="header_center">
-          <ul className="nav__items">
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>Products</li>
-            <li>Blogs</li>
-            <li>About us</li>
-          </ul>
-        </div>
-        <div className="header_right">
-          <div className="header_search">
-            <input type="text" placeholder="Search blogs here" />
-            <BiSearch />
-          </div>
-          <div className="dark_mode">
-            <CiDark />
-          </div>
-          <div className="avatar">
-            <Link to="/profile">
-              <img src={profileImage} alt="" />
-            </Link>
-          </div>
-        </div>
+        <span className="header-logo">RBlogs</span>
+        <ul>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/create">Create post</Link>
+          </li>
+          <li>Read Blogs</li>
+          <li>
+            <Link to="/profile">Profile</Link>
+          </li>
+        </ul>
       </div>
     </header>
   );

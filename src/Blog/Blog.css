@@ -12,9 +12,16 @@
   gap: 25px;
 }
 
+.blogauthor {
+  font-size: 1.4rem;
+  text-transform: capitalize;
+  font-weight: 500;
+  color: #454545;
+}
+
 .blog-image {
-  height: 80px;
-  width: 130px;
+  height: auto;
+  width: 50%;
 }
 
 .blog-heading {

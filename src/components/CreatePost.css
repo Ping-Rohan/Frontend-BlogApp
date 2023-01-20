@@ -1,0 +1,54 @@
+.create-post {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.create-post .container {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  max-width: 500px;
+  margin: auto;
+}
+
+.quill {
+  width: 400px;
+}
+
+.create-post input {
+  height: 30px;
+  min-width: 400px;
+  padding: 5px 10px;
+  display: block;
+}
+
+.create-post label {
+  font-size: 1.6rem;
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 400;
+}
+
+.create-post button {
+  margin-top: 0;
+}
+
+.thumbnail {
+  font-size: 2.5rem;
+  position: relative;
+}
+
+.fileinput {
+  position: relative;
+  z-index: 999;
+  transform: scale(1.03);
+  opacity: 0;
+}
+
+.uploadthumbnail {
+  position: absolute;
+  top: 50%;
+  left: 20px;
+  transform: translateX(-50%);
+}

@@ -6,35 +6,11 @@ import { useDispatch } from "react-redux";
 import { useState } from "react";
 
 export default function Homepage() {
-  const [postImages, setPostImages] = useState([]);
-
-  console.log(postImages);
-
-  const dispatch = useDispatch();
-  const { handleChange, handleSubmit, values } = useFormik({
-    initialValues: {
-      title: "",
-      description: "",
-    },
-
-    onSubmit: (value, action) => {
-      let form = new FormData();
-      form.append("image", postImages);
-      form.append("document", JSON.stringify(value));
-
-      dispatch(createPost(form));
-      action.resetForm();
-    },
-  });
-
-  function handleImageChange(e) {
-    setPostImages(e.target.files[0]);
-  }
   return (
     <>
       <section className="homepage">
         <div className="container">
-          <form className="create-post" action="#" onSubmit={handleSubmit}>
+          {/* <form className="create-post" action="#" onSubmit={handleSubmit}>
             <h1>Write Your Own Blog</h1>
             <div className="input">
               <input
@@ -58,7 +34,7 @@ export default function Homepage() {
             <button className="btn-primary" type="submit">
               Post
             </button>
-          </form>
+          </form> */}
           <div className="fetched-blog">
             <Blog />
           </div>

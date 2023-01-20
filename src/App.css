@@ -18,3 +18,8 @@
 .success_global {
   background-color: #4bb543;
 }
+
+.container {
+  max-width: 700px;
+  margin: auto;
+}

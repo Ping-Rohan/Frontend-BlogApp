@@ -8,6 +8,7 @@ import { Toaster } from "react-hot-toast";
 import Profile from "./pages/Profile/profile.jsx";
 import ProtectedRoute from "./pages/ProtectedRoute";
 import SingleBlog from "./Blog/singleBlog";
+import CreatePost from "./Components/CreatePost";
 
 export default function App() {
   const showSpinner = useSelector((state) => state.ui.showSpinner);
@@ -33,6 +34,7 @@ export default function App() {
             <Route path="/" element={<Homepage />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/blog/:id" element={<SingleBlog />} />
+            <Route path="/create" element={<CreatePost />} />
           </Route>
 
           <Route path="/login" element={<Login />} />
