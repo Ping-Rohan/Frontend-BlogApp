@@ -137,3 +137,33 @@ textarea {
   flex-direction: column;
   line-height: 1.15;
 }
+
+.like-icon {
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+
+.like-icon.active {
+  color: blue;
+}
+
+.like {
+  font-size: 1.8rem;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  padding: 5px;
+  cursor: pointer;
+  width: min-content;
+  background-color: #888;
+  align-self: flex-start;
+}
+
+.like span {
+  height: 24px;
+}
+
+.post-comment {
+  display: flex;
+  gap: 50px;
+}

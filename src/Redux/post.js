@@ -14,12 +14,24 @@ const postSlice = createSlice({
     pushPost(state, action) {
       state.post.push(action.payload);
     },
+    addComment(state, action) {
+      const index = state.post.findIndex(
+        (el) => el._id === action.payload.post
+      );
+      state.post[index].comment.push(action.payload);
+    },
+    addLike(state, action) {
+      const index = state.post.findIndex(
+        (el) => el._id === action.payload.postId
+      );
+      state.post[index].likes = action.payload.newLikesArr;
+    },
   },
 });
 
 export default postSlice.reducer;
 
-const { replacePost, pushPost, getSinglePost } = postSlice.actions;
+const { replacePost, pushPost, addComment, addLike } = postSlice.actions;
 
 const getPost = () => {
   return async (dispatch) => {
@@ -37,16 +49,22 @@ const createPost = (form) => {
   };
 };
 
-const toggleLike = async (id) => {
-  const response = await privateInstance.post(`/api/v1/post/${id}/like`);
-  return response.data.likes;
+const toggleLike = (id) => {
+  return async (dispatch) => {
+    const response = await privateInstance.post(`/api/v1/post/${id}/like`);
+    dispatch(addLike({ postId: id, newLikesArr: response.data.likes }));
+  };
 };
 
 const commentOnPost = (postId, comment) => {
   return async (dispatch) => {
-    await privateInstance.post(`/api/v1/post/${postId}/comment`, comment);
+    const response = await privateInstance.post(
+      `/api/v1/post/${postId}/comment`,
+      comment
+    );
+    dispatch(addComment(response.data.comment));
     toast.success("Commented Successfully");
   };
 };
 
-export { getPost, createPost, toggleLike, commentOnPost };
+export { getPost, createPost, toggleLike, commentOnPost, addLike };

@@ -3,15 +3,23 @@ import { useSelector, useDispatch } from "react-redux";
 import Parser from "html-react-parser";
 import "./singleBlog.css";
 import { useState } from "react";
-import { commentOnPost } from "../Redux/post";
+import { commentOnPost, toggleLike } from "../Redux/post";
+import { AiFillLike, AiOutlineLike } from "react-icons/ai";
 
 export default function SingleBlog() {
+  // const [isLiked, setIsLiked] = useState(true);
   const [userComment, setComment] = useState("");
   const params = useParams();
   const dispatch = useDispatch();
+  const userId = useSelector((state) => state.user.document._id);
+  console.log(userId);
   const post = useSelector((state) =>
     state.post.post.filter((el) => el._id === params.id)
   );
+
+  let isLiked = post[0].likes.includes(userId);
+
+  console.log(isLiked);
 
   function handleComment(e) {
     setComment(e.target.value);
@@ -23,6 +31,10 @@ export default function SingleBlog() {
     };
     dispatch(commentOnPost(params.id, commentJson));
     setComment("");
+  }
+
+  function handleLike() {
+    dispatch(toggleLike(params.id));
   }
 
   const comment = post[0].comment;
@@ -43,8 +55,18 @@ export default function SingleBlog() {
         <div className="comments">
           <h2>Comments</h2>
           <div className="post-comment">
-            <input type="text" onChange={handleComment} value={userComment} />
-            <button onClick={handlePostComment}>Comment</button>
+            <div className="left">
+              <input type="text" onChange={handleComment} value={userComment} />
+              <button onClick={handlePostComment}>Comment</button>
+            </div>
+            <div className="like" onClick={handleLike}>
+              {isLiked ? (
+                <AiFillLike className="like-icon active" />
+              ) : (
+                <AiOutlineLike className="like-icon " />
+              )}
+              <span>{post[0].likes.length}</span>
+            </div>
           </div>
           {!post[0].comment.length && (
             <span className="no-comment">This post has no comments</span>
