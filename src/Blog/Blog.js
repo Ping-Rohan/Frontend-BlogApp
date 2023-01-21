@@ -10,6 +10,8 @@ export default function Blog() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  console.log(post);
+
   useEffect(() => {
     dispatch(getPost());
   }, []);

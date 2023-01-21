@@ -26,12 +26,21 @@ const postSlice = createSlice({
       );
       state.post[index].likes = action.payload.newLikesArr;
     },
+    removeComment(state, action) {
+      const postIndex = state.post.findIndex(
+        (el) => el._id === action.payload.postIndex
+      );
+      state.post[postIndex].comment = state.post[postIndex].comment.filter(
+        (el) => el._id !== action.payload.commentIndex
+      );
+    },
   },
 });
 
 export default postSlice.reducer;
 
-const { replacePost, pushPost, addComment, addLike } = postSlice.actions;
+const { replacePost, pushPost, addComment, addLike, removeComment } =
+  postSlice.actions;
 
 const getPost = () => {
   return async (dispatch) => {
@@ -67,4 +76,19 @@ const commentOnPost = (postId, comment) => {
   };
 };
 
-export { getPost, createPost, toggleLike, commentOnPost, addLike };
+const deleteComment = (postId, commentId) => {
+  return async (dispatch) => {
+    const response = await privateInstance.delete(
+      `/api/v1/post/${postId}/comment/${commentId}`
+    );
+    dispatch(removeComment({ postIndex: postId, commentIndex: commentId }));
+  };
+};
+export {
+  getPost,
+  createPost,
+  toggleLike,
+  commentOnPost,
+  addLike,
+  deleteComment,
+};

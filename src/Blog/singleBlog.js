@@ -3,8 +3,9 @@ import { useSelector, useDispatch } from "react-redux";
 import Parser from "html-react-parser";
 import "./singleBlog.css";
 import { useState } from "react";
-import { commentOnPost, toggleLike } from "../Redux/post";
+import { commentOnPost, toggleLike, deleteComment } from "../Redux/post";
 import { AiFillLike, AiOutlineLike } from "react-icons/ai";
+import { RiDeleteBin5Line } from "react-icons/ri";
 
 export default function SingleBlog() {
   // const [isLiked, setIsLiked] = useState(true);
@@ -35,6 +36,10 @@ export default function SingleBlog() {
 
   function handleLike() {
     dispatch(toggleLike(params.id));
+  }
+
+  function handleDelete(commId) {
+    dispatch(deleteComment(params.id, commId));
   }
 
   const comment = post[0].comment;
@@ -80,7 +85,16 @@ export default function SingleBlog() {
                   </div>
                   <div className="comment-text">
                     <h2 className="commentator">{com.commentedBy.name}</h2>
-                    <p className="actual-comment">{com.comment}</p>
+                    <div className="comment-footer">
+                      <p className="actual-comment">{com.comment}</p>
+                      <span>
+                        {userId === com.commentedBy._id && (
+                          <RiDeleteBin5Line
+                            onClick={handleDelete.bind(null, com._id)}
+                          />
+                        )}
+                      </span>
+                    </div>
                   </div>
                 </div>
               );

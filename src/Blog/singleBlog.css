@@ -155,7 +155,7 @@ textarea {
   padding: 5px;
   cursor: pointer;
   width: min-content;
-  background-color: #888;
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
   align-self: flex-start;
 }
 
@@ -166,4 +166,15 @@ textarea {
 .post-comment {
   display: flex;
   gap: 50px;
+}
+
+.comment-footer {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.comment-footer span {
+  font-size: 1.8rem;
+  cursor: pointer;
 }
