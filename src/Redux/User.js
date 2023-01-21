@@ -30,6 +30,14 @@ export default userSlice.reducer;
 const { updateAccessToken, updateProfileImage, updateDocument, updateLogin } =
   userSlice.actions;
 
+const signUp = (form, navigate) => {
+  return async (dispatch) => {
+    const response = await axios.post(`/api/v1/users/signup`, form);
+    toast.success(response.data.message);
+    navigate("/login");
+  };
+};
+
 const loginUser = (form, navigate) => {
   return async (dispatch) => {
     try {
@@ -59,4 +67,4 @@ const updateFields = (form) => {
   };
 };
 
-export { loginUser, updateFields };
+export { loginUser, updateFields, signUp };

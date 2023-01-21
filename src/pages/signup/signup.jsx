@@ -2,6 +2,9 @@ import React from "react";
 import "./signup.css";
 import { useFormik } from "formik";
 import signupSchema from "./signupSchema";
+import { signUp } from "../../Redux/user";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 let initialValues = {
   name: "",
@@ -11,10 +14,14 @@ let initialValues = {
 };
 
 export default function Signup() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const { handleSubmit, handleChange, errors, values } = useFormik({
     initialValues,
     onSubmit: (value, action) => {
-      console.log(value);
+      dispatch(signUp(value, navigate));
+      action.resetForm();
     },
     validationSchema: signupSchema,
   });

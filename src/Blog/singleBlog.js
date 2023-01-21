@@ -1,13 +1,29 @@
 import { useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import Parser from "html-react-parser";
 import "./singleBlog.css";
+import { useState } from "react";
+import { commentOnPost } from "../Redux/post";
 
 export default function SingleBlog() {
+  const [userComment, setComment] = useState("");
   const params = useParams();
+  const dispatch = useDispatch();
   const post = useSelector((state) =>
     state.post.post.filter((el) => el._id === params.id)
   );
+
+  function handleComment(e) {
+    setComment(e.target.value);
+  }
+
+  function handlePostComment() {
+    const commentJson = {
+      comment: userComment,
+    };
+    dispatch(commentOnPost(params.id, commentJson));
+    setComment("");
+  }
 
   const comment = post[0].comment;
 
@@ -27,8 +43,8 @@ export default function SingleBlog() {
         <div className="comments">
           <h2>Comments</h2>
           <div className="post-comment">
-            <textarea name="" id="" cols="30" rows="6"></textarea>
-            <button>Comment</button>
+            <input type="text" onChange={handleComment} value={userComment} />
+            <button onClick={handlePostComment}>Comment</button>
           </div>
           {!post[0].comment.length && (
             <span className="no-comment">This post has no comments</span>

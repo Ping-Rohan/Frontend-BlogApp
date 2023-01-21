@@ -42,4 +42,11 @@ const toggleLike = async (id) => {
   return response.data.likes;
 };
 
-export { getPost, createPost, toggleLike };
+const commentOnPost = (postId, comment) => {
+  return async (dispatch) => {
+    await privateInstance.post(`/api/v1/post/${postId}/comment`, comment);
+    toast.success("Commented Successfully");
+  };
+};
+
+export { getPost, createPost, toggleLike, commentOnPost };

@@ -4,6 +4,7 @@
   cursor: pointer;
   position: relative;
   padding-bottom: 10px;
+  width: 100%;
 }
 
 .main-blog {
@@ -20,8 +21,8 @@
 }
 
 .blog-image {
-  height: auto;
-  width: 50%;
+  width: 30%;
+  flex-shrink: 0;
 }
 
 .blog-heading {
